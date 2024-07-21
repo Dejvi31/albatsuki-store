@@ -83,8 +83,8 @@ const Cart = () => {
           <span>(Lek) {totalRounded}</span>
         </div>
         <p className="text-body-bold  p-3 w-full hover:bg-black hover:text-white mt-4">
-          This is just a catalog so make sure to screen-shot the shopping cart
-          and send it to our Instagram: albatsuki_animestore
+          Ky eshte vetem nje website-katalog. Keshtu qe bejini screenshot kartes
+          dhe dergojeni ne Instagram: albatsuki_animestore.
         </p>
       </div>
     </div>

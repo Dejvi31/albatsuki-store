@@ -6,10 +6,10 @@ export default function Home() {
   return (
     <>
       <Image
-        src="/banner.jpg"
+        src="/banner.png"
         alt="banner"
-        width={2000}
-        height={1000}
+        width={1333}
+        height={768}
         className="w-screen"
       />
       <Collections />

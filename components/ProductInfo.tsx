@@ -1,8 +1,8 @@
 "use client";
 import { useState } from "react";
-import HeartFavorite from "./HeartFavorite";
 import { MinusCircle, PlusCircle } from "lucide-react";
 import useCart from "@/lib/hooks/useCart";
+import Link from "next/link";
 
 const ProductInfo = ({ productInfo }: { productInfo: ProductType }) => {
   const [selectedColor, setSelectedColor] = useState<string>(
@@ -19,11 +19,29 @@ const ProductInfo = ({ productInfo }: { productInfo: ProductType }) => {
     <div className="max-w-[400px] flex flex-col gap-4">
       <div className="flex justify-between items-center">
         <p className="text-heading3-bold">{productInfo.title}</p>
-        <HeartFavorite product={productInfo} />
       </div>
-      <div className="flex gap-2">
-        <p className="text-base-medium text-grey-2">Category</p>
-        <p className="text-base-bold">{productInfo.category}</p>
+      <div className="flex gap-2 flex-wrap">
+        <p className="text-base-bold text-sm">Collections:</p>
+        <div className="flex gap-2 flex-wrap">
+          {productInfo.collections.map((collection) => (
+            <Link
+              key={collection._id}
+              href={`/collections/${collection._id}`}
+              className="border text-grey-2 border-black px-2 py-1 rounded-lg text-sm cursor-pointer"
+            >
+              {collection.title}
+            </Link>
+          ))}
+        </div>
+      </div>
+      <div className="flex gap-2 flex-wrap">
+        <p className="text-base-bold  text-sm">Category:</p>
+        <Link
+          href={`/category/${productInfo.category}`}
+          className="text-sm border text-grey-2 border-black px-2 py-1 rounded-lg cursor-pointer"
+        >
+          {productInfo.category}
+        </Link>
       </div>
 
       <p className="text-heading3-bold">(Lek) {productInfo.price}</p>

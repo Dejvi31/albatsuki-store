@@ -1,24 +1,48 @@
 "use client";
 import useCart from "@/lib/hooks/useCart";
-import { UserButton, useUser } from "@clerk/nextjs";
-import { CircleUserRound, Menu, ShoppingCart } from "lucide-react";
+import { Menu, ShoppingCart } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import Category from "./Category";
+import { useState, useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
 
 const Navbar = () => {
-  const { user } = useUser();
   const cart = useCart();
-
+  const router = useRouter();
   const [dropdownMenu, setDropdownMenu] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (
+      dropdownRef.current &&
+      !dropdownRef.current.contains(event.target as Node)
+    ) {
+      setDropdownMenu(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  const handleCategoryClick = (category: string) => {
+    setDropdownMenu(false);
+    router.push(`/category/${encodeURIComponent(category)}`);
+  };
 
   return (
     <div className="sticky top-0 z-10 py-2 px-10 flex justify-between items-center bg-white">
       <Link href="/">
         <Image src="/logo.png" alt="logo" width={120} height={120} />
       </Link>
-      <div>
-        <Link href="/">Home</Link>
+
+      {/* Show category buttons directly on larger screens */}
+      <div className="hidden lg:flex flex-grow justify-center">
+        <Category handleCategoryClick={handleCategoryClick} />
       </div>
       <div className="relative flex gap-3 items-center">
         <Link
@@ -28,32 +52,21 @@ const Navbar = () => {
           <ShoppingCart />{" "}
           <p className="text-base-bold">Cart ({cart.cartItems.length})</p>
         </Link>
-
-        {user && (
-          <Menu
-            onClick={() => setDropdownMenu(!dropdownMenu)}
-            className="cursor-pointer"
-          />
-        )}
-        {user && dropdownMenu && (
-          <div className="absolute top-10 right-5 flex flex-col gap-2 p-3 rounded-lg border bg-white text-base-bold">
-            <Link href="/wishlist" className="hover:text-red-1">
-              Wishlist
-            </Link>
-            <Link href="/orders" className="hover:text-red-1">
-              Orders
-            </Link>
-          </div>
-        )}
-
-        {user ? (
-          <UserButton afterSignOutUrl="/sign-in" />
-        ) : (
-          <Link href="/sign-in">
-            <CircleUserRound />
-          </Link>
-        )}
       </div>
+      <Menu
+        className="cursor-pointer lg:hidden"
+        onClick={() => setDropdownMenu(!dropdownMenu)}
+      />
+      {dropdownMenu && (
+        <div
+          ref={dropdownRef}
+          className={`fixed top-16 right-0 bg-white border rounded-lg shadow-lg p-4 w-60 z-20 lg:hidden transition-transform transform ${
+            dropdownMenu ? "translate-x-0" : "translate-x-full"
+          }`}
+        >
+          <Category handleCategoryClick={handleCategoryClick} />
+        </div>
+      )}
     </div>
   );
 };

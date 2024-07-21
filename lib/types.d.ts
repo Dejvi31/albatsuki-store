@@ -1,7 +1,7 @@
 type CollectionType = {
   _id: string;
   title: string;
-  products: number;
+  products: ProductType[];
   image: string;
 };
 
@@ -11,7 +11,7 @@ type ProductType = {
   description: string;
   media: [string];
   category: string;
-  collections: [string];
+  collections: Collection[];
   tags: [string];
   price: number;
   cost: number;
