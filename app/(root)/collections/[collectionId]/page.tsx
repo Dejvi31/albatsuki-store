@@ -7,4 +7,5 @@ const page = async ({ params }: { params: { collectionId: string } }) => {
   return <CollectionInfo collectionDetails={collectionDetails} />;
 };
 
+export const dynamic = "force-dynamic";
 export default page;
