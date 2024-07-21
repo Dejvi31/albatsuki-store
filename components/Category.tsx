@@ -2,6 +2,7 @@ const categories = [
   "Dragon Ball Z",
   "Naruto",
   "One Piece",
+  "Bleach",
   "Attack On Titan",
   "Demon Slayer",
   "Jujutsu Kaisen",
