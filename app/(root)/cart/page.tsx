@@ -82,10 +82,14 @@ const Cart = () => {
           <span>Total Amount</span>
           <span>(Lek) {totalRounded}</span>
         </div>
-        <p className="text-body-bold  p-3 w-full hover:bg-black hover:text-white mt-4">
+        <p className="text-body-semibold  p-3 w-full">
           Ky eshte vetem nje website-katalog. Keshtu qe bejini screenshot kartes
-          dhe dergojeni ne Instagram: albatsuki_animestore.
+          dhe dergojeni ne Instagram.
         </p>
+        <div className="flex flex-col items-center justify-center mt-4">
+          <p>Skano Kodin</p>
+          <Image src="/qr-code.png" alt="QR Code" width={128} height={128} />
+        </div>
       </div>
     </div>
   );
