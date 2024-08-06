@@ -3,6 +3,7 @@ import useCart from "@/lib/hooks/useCart";
 import { MinusCircle, PlusCircle, Trash } from "lucide-react";
 import Image from "next/image";
 import React from "react";
+import { FaInstagram, FaYoutube } from "react-icons/fa";
 
 const Cart = () => {
   const cart = useCart();
@@ -86,9 +87,27 @@ const Cart = () => {
           Ky eshte vetem nje website-katalog. Keshtu qe bejini screenshot kartes
           dhe dergojeni ne Instagram.
         </p>
-        <div className="flex flex-col items-center justify-center mt-4">
-          <p>Skano Kodin</p>
-          <Image src="/qr-code.png" alt="QR Code" width={128} height={128} />
+        <div className="flex justify-center mt-4">
+          <a
+            href="https://instagram.com/albatsuki_animestore"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 text-red-1 hover:text-black"
+          >
+            <FaInstagram size={32} />
+            <span className="text-body-bold">Follow us on Instagram</span>
+          </a>
+        </div>
+        <div className="flex justify-center mt-4">
+          <a
+            href="https://www.youtube.com/@Albatsuki"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 text-red-1 hover:text-black"
+          >
+            <FaYoutube size={32} />
+            <span className="text-body-bold">Subscribe to our YouTube</span>
+          </a>
         </div>
       </div>
     </div>

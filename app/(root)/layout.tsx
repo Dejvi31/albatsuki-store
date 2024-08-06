@@ -9,6 +9,8 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Albatsuki Store",
   description: "Albatsuki Ecommerce Store",
+  keywords:
+    "Albatsuki, anime store Albania, anime merchandise Albania, cosplay, anime figurines, anime clothing",
 };
 
 export default function RootLayout({
