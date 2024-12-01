@@ -35,7 +35,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="sticky top-0 z-10 py-2 px-10 flex justify-between items-center bg-white">
+    <div className="sticky top-0 z-10 py-2 px-10 flex justify-between items-center bg-grey-2">
       <Link href="/">
         <Image src="/logo.png" alt="logo" width={120} height={120} />
       </Link>
@@ -47,7 +47,7 @@ const Navbar = () => {
       <div className="relative flex gap-3 items-center">
         <Link
           href="/cart"
-          className="flex items-center gap-3 border rounded-lg px-2 py-1 hover:bg-black hover:text-white"
+          className="flex items-center gap-3 border rounded-lg px-2 py-1 bg-white hover:bg-black hover:text-white"
         >
           <ShoppingCart />{" "}
           <p className="text-base-bold">Cart ({cart.cartItems.length})</p>
